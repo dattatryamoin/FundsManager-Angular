@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "FundsCrowler";
+}
+<div ng-app="app" ng-controller="MainCtrl">
+    <toaster-container></toaster-container>
+
+    <br />
+    <select class="form-control" data-ng-model="selectedFundHouse" ng-change="selectedItemChanged(selectedFundHouse, selectedSchemeType)">
+        <option value="">--Select Fund House--</option>
+        <option data-ng-repeat="item in fundHousesList" value="{{item}}">{{item}}</option>
+    </select>
+
+    <br />
+
+    <select class="form-control" data-ng-model="selectedSchemeType" ng-change="selectedItemChanged(selectedFundHouse, selectedSchemeType)">
+        <option value="">--Select Scheme Type--</option>
+        <option data-ng-repeat="item in allSchemeTypes" value="{{item}}">{{item}}</option>
+    </select>
+
+    <br />
+
+    <div ui-grid="gridOptions" ui-grid-selection ui-grid-pagination class="grid"></div>
+    <br />
+
+    <button type="button" ng-click="saveFunds()" class=" btn btn-primary">Add to My Funds List</button>
+
+    @Html.ActionLink("My Funds", "Index", "CustomerFunds", null, new { @class = "btn btn-primary" })
+
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/ui-grid.js"),
+    @Scripts.Render("~/Scripts/FundsManagerScripts/app.js"),
+    @Scripts.Render("~/Scripts/toaster.js")
+}
+
+

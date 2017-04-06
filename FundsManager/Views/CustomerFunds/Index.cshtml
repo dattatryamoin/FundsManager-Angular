@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BL.FundInfo>
+@{
+    ViewBag.Title = "My Funds";
+}
+
+<h2>Customer Funds</h2>
+@if (Model != null)
+{
+    <div ng-app="CustomerFunds" ng-controller="CustomerController">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Scheme Code</th>
+                    <th>Scheme Name</th>
+                    <th>Net Asset Value</th>
+                    <th>Repurchase Price</th>
+                    <th>Sale Price</th>
+                    <th>Date</th>
+                    @*<th>#</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @*<tr ng-repeat="item in CustomList">
+                        <td>{{item.schemeCode }}</td>
+                        <td>{{item.schemeName }}</td>
+                        <td>{{item.netAssetValue | number : 2  }}</td>
+                        <td>{{item.repurchasePrice | number : 2}}</td>
+                        <td>{{item.salePrice | number : 2 }}</td>
+                        <td>{{item.date | date: 'dd-MMM-yyyy' }}</td>
+                        <td><button type="button" ng-click="RemoveFromCustomList($index,item);" class="btn btn-primary btn-xs">Remove</button></td>
+                    </tr>*@
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SchemeCode</td>
+                        <td>@item.SchemeName</td>
+                        <td>@item.NetAssetValue</td>
+                        <td>@item.RepurchasePrice</td>
+                        <td>@item.SalePrice</td>
+                        <td>@item.Date</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        @*<button type="button" ng-click="UploadCustomList(CustomList)" class=" btn btn-primary">Post</button>*@
+    </div>
+}
+@section scripts
+{
+    @Scripts.Render("~/Scripts/FundsManagerScripts/CustomerFunds.js");
+}
